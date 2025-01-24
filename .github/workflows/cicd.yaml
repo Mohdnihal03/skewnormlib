@@ -39,9 +39,10 @@ jobs:
       run: pytest tests/
 
   publish:
-    needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'  # Only deploy from the main branch
+    permissions:
+      contents: read  # Required for accessing the repository contents
+      id-token: write  # Only deploy from the main branch
 
     steps:
     # Step 1: Check out the code
