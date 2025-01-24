@@ -1,0 +1,49 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+__pycache__/
+
+# Distribution/packaging files
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environment
+venv/
+env/
+myenv/
+
+# IDE files
+.vscode/
+.idea/
+*.sublime-workspace
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Test coverage and reports
+coverage.xml
+*.cover
+*.cov
+.cache
+
+# pyproject.toml build artifacts
+*.whl
+*.tar.gz
+*.zip
+
+# Pytest cache
+.pytest_cache/
+
+# Pylint reports
+pylint_report.txt
