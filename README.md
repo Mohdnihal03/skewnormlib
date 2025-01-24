@@ -1,6 +1,6 @@
 # skewnormlib
 
-`skewnorm` is an open-source Python library designed for preprocessing data using a novel method called **Skew Weighted Normalization**. This technique accounts for the skewness in data and applies normalization while optionally introducing a non-linear transformation. It is ideal for preparing data for machine learning models that require normalized inputs.
+`skewnormlib` is an open-source Python library designed for preprocessing data using a novel method called **Skew Weighted Normalization**. This technique accounts for the skewness in data and applies normalization while optionally introducing a non-linear transformation. It is ideal for preparing data for machine learning models that require normalized inputs.
 
 ---
 
@@ -16,13 +16,13 @@ The transformation is defined as:
 \]
 
 Where:
-- \(X\): Input data.
-- \(\mu\): Mean of the data.
-- \(\sigma\): Standard deviation of the data.
-- \(\gamma\): Skewness of the data.
-- \(\alpha\): Skewness weighting factor (default: 1.0).
-- \(\beta\): Weighting factor for the non-linear transformation (default: 0.5).
-- \(k\): Scaling factor for the non-linear term (default: 1.0).
+- X: Input data.
+- mu: Mean of the data.
+- sigma: Standard deviation of the data.
+- gamma: Skewness of the data.
+- alpha: Skewness weighting factor (default: 1.0).
+- beta: Weighting factor for the non-linear transformation (default: 0.5).
+- k: Scaling factor for the non-linear term (default: 1.0).
 
 ---
 
@@ -31,7 +31,7 @@ Where:
 ### Installation
 Install the library from PyPI:
 ```bash
-pip install skewnorm
+pip install skewnormlib
 ```
 
 ### Usage Example
@@ -99,5 +99,5 @@ This project is licensed under the MIT License, ensuring it remains free and ope
 
 ## Contact
 For questions or suggestions, contact:
-- **Author**: Your Name
-- **Email**: your.email@example.com
+- **Author**: Mohammed Nihal
+- **Email**:mohdnihal03@gmail.com
