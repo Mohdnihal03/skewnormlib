@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="skewnorm",
-    version="0.1.0",
+    version="0.1.1",
     author="Mohammed Nihal",
     author_email="mohd.nihalll03@gmail.com",
     description="A library for skew-weighted normalization",

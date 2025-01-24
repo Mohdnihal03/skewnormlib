@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for skewnormlib
+name: CI/CD Pipeline for skewnormlib package
 
 on:
   push:
@@ -13,8 +13,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      id-token: write
+      contents: read       # Required for reading repository content
+      id-token: write 
 
     steps:
     # Step 1: Check out the code
@@ -39,9 +39,10 @@ jobs:
       run: pytest tests/
 
   publish:
-    needs: test
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'  # Only deploy from the main branch
+    permissions:
+      contents: read  # Required for accessing the repository contents
+      id-token: write  # Only deploy from the main branch
 
     steps:
     # Step 1: Check out the code
