@@ -1,4 +1,4 @@
-name: CI/CD Pipeline for skewnormlib
+name: CI/CD Pipeline for skewnormlib package
 
 on:
   push:
