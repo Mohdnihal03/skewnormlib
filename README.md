@@ -38,23 +38,28 @@ pip install skewnormlib
 ```python
 import numpy as np
 from skewnorm.normalization import SkewWeightedNormalization
+from sklearn.model_selection import train_test_split
 
 # Sample data
-data = np.array([[1, 2, 3],
-                 [4, 5, 6],
-                 [7, 8, 9],
-                 [10, 20, 30]])
+data = np.random.rand(100, 5)  # 100 samples with 5 features
+X_train, X_test = train_test_split(data, test_size=0.2)
 
 # Initialize the transformer
 swn = SkewWeightedNormalization(alpha=1.0, beta=0.5, k=1.0)
 
-# Fit the transformer to the data
-swn.fit(data)
+# Fit and transform the training data
+X_train_transformed = swn.fit_transform(X_train)
 
-# Transform the data
-transformed_data = swn.transform(data)
-print("Transformed Data:")
-print(transformed_data)
+# Transform the test data
+X_test_transformed = swn.transform(X_test)
+
+# Reverse the transformation (if needed)
+X_test_original = swn.inverse_transform(X_test_transformed)
+
+print("X_train_transformed shape:", X_train_transformed.shape)
+print("X_test_transformed shape:", X_test_transformed.shape)
+print("Original test data recovered shape:", X_test_original.shape)
+
 ```
 
 ---

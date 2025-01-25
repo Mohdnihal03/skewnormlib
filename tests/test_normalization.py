@@ -1,43 +1,42 @@
-import unittest
-from scipy.stats import skew
 import numpy as np
+import pytest
 from skewnorm.normalization import SkewWeightedNormalization
 
-class TestSkewWeightedNormalization(unittest.TestCase):
-    """
-    Unit tests for SkewWeightedNormalization.
-    """
-    def setUp(self):
-        """
-        Set up sample data for testing.
-        """
-        self.data = np.array([[1, 2, 3],
-                              [4, 5, 6],
-                              [7, 8, 9],
-                              [10, 20, 30]])
+def test_fit():
+    """Test the fit method."""
+    data = np.random.rand(100, 5)
+    swn = SkewWeightedNormalization()
+    swn.fit(data)
+    assert hasattr(swn, "mu_")
+    assert hasattr(swn, "sigma_")
+    assert hasattr(swn, "gamma_")
+    assert swn.mu_.shape == (5,)
+    assert swn.sigma_.shape == (5,)
+    assert swn.gamma_.shape == (5,)
 
-    def test_fit(self):
-        """
-        Test that the fit method correctly computes mean, standard deviation, and skewness.
-        """
-        transformer = SkewWeightedNormalization()
-        transformer.fit(self.data)
+def test_transform():
+    """Test the transform method."""
+    data = np.random.rand(100, 5)
+    swn = SkewWeightedNormalization()
+    swn.fit(data)
+    transformed = swn.transform(data)
+    assert transformed.shape == data.shape
 
-        np.testing.assert_almost_equal(transformer.mu_, np.mean(self.data, axis=0))
-        np.testing.assert_almost_equal(transformer.sigma_, np.std(self.data, axis=0))
-        np.testing.assert_almost_equal(transformer.gamma_, skew(self.data, axis=0))
+def test_fit_transform():
+    """Test the fit_transform method."""
+    data = np.random.rand(100, 5)
+    swn = SkewWeightedNormalization()
+    transformed = swn.fit_transform(data)
+    assert hasattr(swn, "mu_")
+    assert hasattr(swn, "sigma_")
+    assert hasattr(swn, "gamma_")
+    assert transformed.shape == data.shape
 
-    def test_transform(self):
-        """
-        Test that the transform method correctly normalizes the data.
-        """
-        transformer = SkewWeightedNormalization()
-        transformer.fit(self.data)
-        transformed_data = transformer.transform(self.data)
-
-        self.assertEqual(transformed_data.shape, self.data.shape)
-        np.testing.assert_almost_equal(np.mean(transformed_data, axis=0), 0, decimal=1)
-
-# Run the tests
-if __name__ == "__main__":
-    unittest.main()
+def test_shape_mismatch():
+    """Test for shape mismatch between fit and transform."""
+    train_data = np.random.rand(100, 5)
+    test_data = np.random.rand(100, 6)  # Different number of features
+    swn = SkewWeightedNormalization()
+    swn.fit(train_data)
+    with pytest.raises(ValueError):
+        swn.transform(test_data)

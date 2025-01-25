@@ -72,3 +72,22 @@ class SkewWeightedNormalization(BaseEstimator, TransformerMixin):
         scaled_data = (X - self.mu_) / (self.sigma_ * (1 + self.alpha * np.abs(self.gamma_))) \
                       + self.beta * np.tanh((X - self.mu_) / (self.k * self.sigma_))
         return scaled_data
+
+    def fit_transform(self, X, y=None):
+        """
+        Fit the transformer and transform the data in one step.
+
+        Parameters:
+        ----------
+        X : array-like of shape (n_samples, n_features)
+            Input data to be fitted and transformed.
+        y : None (ignored)
+            Included for compatibility with Scikit-learn.
+
+        Returns:
+        -------
+        scaled_data : array-like of shape (n_samples, n_features)
+            Transformed data.
+        """
+        return self.fit(X).transform(X)
+
